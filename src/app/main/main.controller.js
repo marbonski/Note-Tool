@@ -3,37 +3,29 @@
 
   angular
     .module('noteTool')
-    .controller('MainController', MainController);
+    .controller('MainController', ['$scope', function ($scope) {
+      $scope.remove = function (scope) {
+        scope.remove();
+      };
 
-  /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
-    var vm = this;
+      $scope.newItem = function () {
+        var nodeData = $scope.data[$scope.data.length - 1];
+        $scope.data.push({
+          id: $scope.data.length + 1,
+          title: 'node ' + ($scope.data.length + 1)
+        });
+      };
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1498893463250;
-    vm.showToastr = showToastr;
+      $scope.data = [{
+        'id': 1,
+        'title': 'node 1'
+      }, {
+        'id': 2,
+        'title': 'node 2'
+      }, {
+        'id': 3,
+        'title': 'node 3'
+      }];
+    }]);
 
-    activate();
-
-    function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
-    }
-
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
-
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
-  }
-})();
+}());
