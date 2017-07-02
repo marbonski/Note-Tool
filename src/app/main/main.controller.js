@@ -3,20 +3,20 @@
 
   angular
     .module('noteTool')
-    .controller('MainController', ['$scope', function ($scope) {
-      $scope.remove = function (scope) {
-        scope.remove();
+    .controller('MainController', ['$scope', function (data) {
+      data.remove = function (data) {
+        data.remove();
       };
 
-      $scope.newItem = function () {
-        var nodeData = $scope.data[$scope.data.length - 1];
-        $scope.data.push({
-          id: $scope.data.length + 1,
-          title: 'node ' + ($scope.data.length + 1)
+      data.newItem = function () {
+       // var nodeData = data.data[data.data.length - 1];
+        data.data.push({
+          id: data.data.length + 1,
+          title: 'node ' + (data.data.length + 1)
         });
       };
 
-      $scope.data = [{
+      data.data = [{
         'id': 1,
         'title': 'node 1'
       }, {
