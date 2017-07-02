@@ -16,6 +16,10 @@
         });
       };
 
+      data.changeName = function (newTitle, id) {
+
+      }
+
       data.data = [{
         'id': 1,
         'title': 'node 1'
